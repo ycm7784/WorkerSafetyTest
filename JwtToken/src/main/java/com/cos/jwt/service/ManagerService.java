@@ -18,7 +18,6 @@ public class ManagerService {
 
 	public Manager joinManager (Manager manager) {
 		manager.setPassword(bCryptPasswordEncoder.encode(manager.getPassword()));
-		manager.setRole("ROLE_USER");
 		return managerRepo.save(manager);
 		
 	}
