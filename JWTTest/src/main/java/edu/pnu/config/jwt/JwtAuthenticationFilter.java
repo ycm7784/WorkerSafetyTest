@@ -43,6 +43,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			// 토큰 만들기 
 			UsernamePasswordAuthenticationToken authenticationToken = 
 					new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+			//authenticationManager로 로그인 시도를 하면 PrincipalDetailsService호출
 			//2.PrincipalDetailsService의 loadUserByUsername()함수가 실행된후 정상이면 authentication이 리턴됨
 			//DB에 있는 username와 password가 일치하면 만들어진다
 			//authentication 로그인 정보가 담김

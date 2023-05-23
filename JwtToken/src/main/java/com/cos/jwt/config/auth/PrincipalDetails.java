@@ -16,6 +16,11 @@ public class PrincipalDetails implements UserDetails{
 		this.manager = manager;
 	}
 	
+	public Manager getmanager() {
+		return manager;
+		
+	}
+	
 	// 계정의 권한을 리턴 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
