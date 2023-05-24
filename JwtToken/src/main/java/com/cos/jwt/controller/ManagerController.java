@@ -1,5 +1,7 @@
 package com.cos.jwt.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.cos.jwt.config.auth.PrincipalDetails;
 import com.cos.jwt.domain.Manager;
 import com.cos.jwt.service.ManagerService;
@@ -55,10 +59,11 @@ public class ManagerController {
 //	    }
 //	}
 	@GetMapping("/user/username")
-	public ResponseEntity<?> getusername() {
+	public ResponseEntity<?> getusername(HttpServletRequest request) {
+		String jwtToken = request.getHeader("Authorization").replace("Bearer ","");
+		String managername = JWT.require(Algorithm.HMAC512("jwt")).build().verify(jwtToken).getClaim("managername").asString();
 		
-		
-		return ResponseEntity.ok(1);
+		return ResponseEntity.ok(managername);
 	}
 	
 	

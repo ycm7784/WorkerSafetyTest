@@ -78,6 +78,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*10)))
 				//비공개 클래임
 				.withClaim("managerid", principalDetails.getmanager().getManagerid())
+				.withClaim("managername", principalDetails.getmanager().getName())
 				//서버만 아는 고유한 값으로 해야함
 				.sign(Algorithm.HMAC512("jwt"));
 		// Authorization가 해더에 담겨서 사용자에 응답

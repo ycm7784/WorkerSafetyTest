@@ -51,7 +51,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 			}//JWT 토큰을 검증을 해서 정상적인 사용자인지 확인
 			String jwtToken = request.getHeader("Authorization").replace("Bearer ","");
 			
-			String managerid = JWT.require(Algorithm.HMAC512("jwt")).build().verify(jwtToken).getClaim("username").asString();
+			String managerid = JWT.require(Algorithm.HMAC512("jwt")).build().verify(jwtToken).getClaim("managerid").asString();
 			//서명이 정상적으로 됨 , 사용자가 인증됐음
 			if(managerid != null) {
 				Manager managerEntity = managerRepo.findByManagerid(managerid);
