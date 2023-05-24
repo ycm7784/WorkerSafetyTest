@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -82,6 +83,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				//서버만 아는 고유한 값으로 해야함
 				.sign(Algorithm.HMAC512("jwt"));
 		// Authorization가 해더에 담겨서 사용자에 응답
+		
 		response.addHeader("Authorization","Bearer "+ jwtToken);
 	
 	}
