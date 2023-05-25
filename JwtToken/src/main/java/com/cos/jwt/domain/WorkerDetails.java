@@ -12,8 +12,8 @@ public class WorkerDetails {
 	@Id
 	private Integer No;
 	@ManyToOne()
-	@JoinColumn(name = "UserCode")
-	private Worker  UserCode;
+	@JoinColumn(name = "userCode")
+	private Worker  userCode;
 	private Integer Heartbeat;
 	private Double Temperature;
 	private Integer Spo2;
@@ -28,10 +28,10 @@ public class WorkerDetails {
 		No = no;
 	}
 	public Worker getUserCode() {
-		return UserCode;
+		return userCode;
 	}
 	public void setUserCode(Worker userCode) {
-		UserCode = userCode;
+		userCode = userCode;
 	}
 	public Integer getHeartbeat() {
 		return Heartbeat;

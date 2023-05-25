@@ -7,20 +7,21 @@ import javax.persistence.Id;
 @Entity
 public class Worker {
 	@Id
-	@Column(name = "UserCode")
-	private Integer UserCode;
+	@Column(name = "userCode")
+	private Integer userCode;
 	private String name;
 	private String gender;
 	private Integer age;
 	private String role;
 	
-	
+
 	public Integer getUserCode() {
-		return UserCode;
+		return userCode;
 	}
-	public void setWorkerDetails(Integer UserCode) {
-		this.UserCode = UserCode;
+	public void setUserCode(Integer userCode) {
+		this.userCode = userCode;
 	}
+	
 	public String getName() {
 		return name;
 	}
