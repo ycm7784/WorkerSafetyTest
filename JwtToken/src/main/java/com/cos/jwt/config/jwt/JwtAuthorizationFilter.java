@@ -45,8 +45,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	        responseMap.put("message", message);
 	        String json = objectMapper.writeValueAsString(responseMap);
 	        res.getWriter().write(json);
-	        res.getWriter().print(json);
-	        System.out.println(message);
 	    }
 	
 	//인증이나 권한이 필요한 주소요청이 있을 때 해당 필터를 타게됨
@@ -90,8 +88,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		                logger.warn("토큰 기한 만료");
 		                setErrorResponse(response, "토큰 기한 만료");
 		            }catch(JWTDecodeException e){
-		                logger.error("토큰 형식오류.");
-		            	setErrorResponse(response, "토큰 형식오류");
+		                logger.error("토큰 형식 오류.");
+		            	setErrorResponse(response, "토큰 형식 오류");
 		            }
 			
 			 chain.doFilter(request, response);
