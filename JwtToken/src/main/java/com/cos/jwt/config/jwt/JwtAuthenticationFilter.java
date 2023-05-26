@@ -69,23 +69,31 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		System.out.println("successfulAuthentication실행됨: 인증이 완료 되었다는 뜻");
-		//jwt토큰 만들기
-		PrincipalDetails principalDetails = (PrincipalDetails)authResult.getPrincipal();//오브젝트로 리턴하기때문에 다운케스팅
-		//RSA방식은 아니구 Hash 암호 방식
-		String jwtToken = JWT.create()
-				//토큰이름
-				.withSubject("jwt토큰")
-				//토큰 만료시간 60000 == 1분
-				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*10)))
-				//비공개 클래임
-				.withClaim("managerid", principalDetails.getmanager().getManagerid())
-				.withClaim("managername", principalDetails.getmanager().getName())
-				//서버만 아는 고유한 값으로 해야함
-				.sign(Algorithm.HMAC512("jwt"));
-		// Authorization가 해더에 담겨서 사용자에 응답
-		
-		response.addHeader("Authorization","Bearer "+ jwtToken);
+//		//jwt토큰 만들기
+//		PrincipalDetails principalDetails = (PrincipalDetails)authResult.getPrincipal();//오브젝트로 리턴하기때문에 다운케스팅
+//		//RSA방식은 아니구 Hash 암호 방식
+//		String jwtToken = JWT.create()
+//				//토큰이름
+//				.withSubject("jwt토큰")
+//				//토큰 만료시간 60000 == 1분
+//				.withExpiresAt(new Date(System.currentTimeMillis()+(60000*10)))
+//				//비공개 클래임
+//				.withClaim("managerid", principalDetails.getmanager().getManagerid())
+//				.withClaim("managername", principalDetails.getmanager().getName())
+//				//서버만 아는 고유한 값으로 해야함
+//				.sign(Algorithm.HMAC512("jwt"));
+//		// Authorization가 해더에 담겨서 사용자에 응답
+//		
+//		response.addHeader("Authorization","Bearer "+ jwtToken);
 	
+		
+		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
+	    String accessToken = JwtTokenProvider.generateAccessToken(principalDetails.getmanager());
+	    String refreshToken = JwtTokenProvider.generateRefreshToken(principalDetails.getmanager());
+	    
+	    // 생성된 토큰을 응답 헤더에 추가
+	    response.addHeader("Authorization", "Bearer " + accessToken);
+	    response.addHeader("Refresh-Token", refreshToken);
 	}
 	
 

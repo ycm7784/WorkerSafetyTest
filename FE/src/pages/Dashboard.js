@@ -32,7 +32,7 @@ const Dashboard = ({loginInfo}) => {
       <div className='container'>
         {tableData && (
           <div className='map-container'>
-            <Map value={tableData} />
+            {/* <Map value={tableData} /> */}
           </div>
         )}
         <div className='table-container'>
