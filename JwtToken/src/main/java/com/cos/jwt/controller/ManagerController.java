@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,15 +22,20 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 
 import com.cos.jwt.domain.Manager;
+import com.cos.jwt.domain.Objectchange;
 import com.cos.jwt.domain.Worker;
 import com.cos.jwt.domain.WorkerDetails;
 import com.cos.jwt.service.ManagerService;
+import com.cos.jwt.service.SchedulerService;
 import com.cos.jwt.service.WorkerDetailsService;
 import com.cos.jwt.service.WorkerService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 //@CrossOrigin(origins = "http://localhost:3000")
 @EnableScheduling
 @RestController
-public class ManagerController {
+public class ManagerController   {
 	@Autowired
 	ManagerService managerService;
 	
@@ -39,8 +45,8 @@ public class ManagerController {
 	@Autowired
 	WorkerDetailsService workerdeDetailsService;
 	
-//	@Autowired
-//	WorkerDeteilComponent workerDeteilComponent;
+	@Autowired
+	SchedulerService schedulerService;
 	
 	
 	@PostMapping("/user/join")
@@ -51,7 +57,7 @@ public class ManagerController {
 	}
 	@GetMapping("/worker/list")
 	public  ResponseEntity<?> workerlist() {
-		List worklist = workerService.workerList();
+		List<Worker> worklist = workerService.workerList();
 		return ResponseEntity.ok(worklist);
 	}
 	
@@ -69,11 +75,12 @@ public class ManagerController {
 	
 	RestTemplate restTemplate = new RestTemplate();
 	int counter = 1;
+	
+	private volatile boolean scheduled = false;
 	@Scheduled(fixedRate = 2000)
 	@PostMapping("/worker/listdetail")
-	public ResponseEntity<?> workerlistdetail() {
-//		WorkerDeteilComponent workerDeteilComponent;
-//		workerDeteilComponent.sendWorkerListDetail();	
+	public ResponseEntity<?> workerlistdetail() throws JsonMappingException, JsonProcessingException {
+		if (scheduled) {
         String url = "http://localhost:5000/predict";
     	//HttpHeaders  HTTP 요청 또는 응답의 헤더 정보를 담는 클래스
     	HttpHeaders headers = new HttpHeaders();
@@ -85,14 +92,37 @@ public class ManagerController {
     	System.out.println(list);
     	// HTTP POST 요청을 보내고 응답을 받는 메서드(요청보낼 url,요청에 담을 데이터와 헤더를 담은 객체,요청에 담을 데이터와 헤더를 담은 객체)
     	String response = restTemplate.postForObject(url, entity, String.class);
-    	System.out.println(response);
+    	System.out.println("response"+response);
+    	
+    	//json 형태의 response를 객체로 
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	Objectchange objectchange = objectMapper.readValue(response, Objectchange.class);
+    	System.out.println("objectchange"+objectchange);
+    	
+    	// 응답 및 리스트 데이터를 Map에 담기
     	Map<String, Object> data = new HashMap<>();
     	data.put("list", list);
-    	data.put("response", response);
+    	data.put("response", objectchange);
+    	// ResponseEntity를 반환하여 응답 데이터 전달
     	return ResponseEntity.ok(data);
+		}
+		return null;
+			
     }
 	
-	
+
+	    @PostMapping("/worker/start")
+	    public ResponseEntity<?> startScheduledTask() {
+	        scheduled = true;
+	        return ResponseEntity.ok("ok");
+	    }
+
+	    @PostMapping("/worker/stop")
+	    public ResponseEntity<?> stopScheduledTask() {
+	        scheduled = false;
+	        return ResponseEntity.ok().build();
+	    }
+//	
 //	@GetMapping("/refresh")
 //    public ResponseEntity<Map<String, String>> refreshAccessToken(@RequestParam("refreshToken") String refreshToken) {
 //        try {
@@ -122,20 +152,11 @@ public class ManagerController {
 //    }
 	
 	
-	
-//	@GetMapping("/user/username")
-//	public ResponseEntity<?> getusername(HttpServletRequest request) {
-//		String jwtToken = request.getHeader("Authorization").replace("Bearer ","");
-//		String managername = JWT.require(Algorithm.HMAC512("jwt")).build().verify(jwtToken).getClaim("managername").asString();
-//		
-//		return ResponseEntity.ok(managername);
-//	}
-	
-	
 	@PutMapping("/login/logout")
 	public void logout(SessionStatus status) {
 		status.setComplete();
 		
 	}
+	
 	
 }
