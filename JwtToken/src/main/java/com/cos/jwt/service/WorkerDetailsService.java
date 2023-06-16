@@ -24,7 +24,7 @@ public class WorkerDetailsService {
 		List<WorkerDetails> workerDetails = workerDetailsRepo.findByNoBetween(i,i+19); 
 		return workerDetails;
 	}
-	public List<WorkerDetails> WorkerDetailListTime(LocalTime time) {
+	public List<WorkerDetails> WorkerDetailListTime(LocalDateTime time) {
 		List<WorkerDetails> workerDetails = workerDetailsRepo.findByTimeBetween(time,time.plusSeconds(2)); 
 		return workerDetails;
 	}

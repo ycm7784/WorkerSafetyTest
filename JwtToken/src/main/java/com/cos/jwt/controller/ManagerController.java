@@ -1,7 +1,6 @@
 package com.cos.jwt.controller;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class ManagerController   {
 	
 	RestTemplate restTemplate = new RestTemplate();
 	int counter = 1;
-	LocalTime time = LocalTime.of(0, 0, 0,10000000);
+	LocalDateTime time = LocalDateTime.of(2023, 6, 15, 0, 0, 0, 0);
 	private volatile boolean scheduled = false;
 	@Scheduled(fixedRate = 2000)
 	@PostMapping("/worker/listdetail")

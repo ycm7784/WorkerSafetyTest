@@ -1,7 +1,7 @@
 package com.cos.jwt.domain;
 
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +19,7 @@ public class WorkerDetails {
 	private Double gx;
 	private Double gy;
 	private Double gz;
-	private LocalTime time;
+	private LocalDateTime time;
 	private Integer heartbeat;
 	private Double temp;
 	
@@ -54,10 +54,10 @@ public class WorkerDetails {
 		this.gz = gz;
 	}
 	
-	public LocalTime getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
-	public void setTime(LocalTime time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 	public Integer getHeartbeat() {
