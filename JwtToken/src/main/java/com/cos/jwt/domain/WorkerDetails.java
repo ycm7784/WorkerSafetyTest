@@ -19,6 +19,7 @@ public class WorkerDetails {
 	private Double gx;
 	private Double gy;
 	private Double gz;
+	private String label;
 	private LocalDateTime time;
 	private Integer heartbeat;
 	private Double temp;
@@ -71,6 +72,12 @@ public class WorkerDetails {
 	}
 	public void setTemp(Double temp) {
 		this.temp = temp;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
 	}
 	
 }

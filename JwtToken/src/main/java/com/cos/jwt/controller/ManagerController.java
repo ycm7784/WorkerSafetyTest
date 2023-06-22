@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
@@ -63,14 +64,14 @@ public class ManagerController   {
 	}
 	
 	@DeleteMapping("/worker/delete")
-	public void workerdelete(@RequestBody Integer code) {
-		workerService.workerdelete(code);
+	public void workerdelete(@RequestParam Integer userCode) {
+		workerService.workerdelete(userCode);
 	}
 	
 	
 	RestTemplate restTemplate = new RestTemplate();
 	int counter = 1;
-	LocalDateTime time = LocalDateTime.of(2023, 6, 15, 0, 0, 0, 0);
+	LocalDateTime time = LocalDateTime.of(2023, 6, 15, 1, 0, 0, 0);
 	private volatile boolean scheduled = false;
 	@Scheduled(fixedRate = 2000)
 	@PostMapping("/worker/listdetail")
@@ -93,7 +94,7 @@ public class ManagerController   {
     	// HTTP POST 요청을 보내고 응답을 받는 메서드(요청보낼 url,요청에 담을 데이터와 헤더를 담은 객체,요청에 담을 데이터와 헤더를 담은 객체)
     	String response = restTemplate.postForObject(url, entity, String.class);
     	System.out.println("response"+response);
-    	
+    	System.out.println(response);
     	//json 형태의 response를 객체로 
     	ObjectMapper objectMapper = new ObjectMapper();
     	Objectchange objectchange = objectMapper.readValue(response, Objectchange.class);
