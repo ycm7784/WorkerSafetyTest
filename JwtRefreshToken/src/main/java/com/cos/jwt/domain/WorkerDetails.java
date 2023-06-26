@@ -79,10 +79,5 @@ public class WorkerDetails {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	@Override
-	public String toString() {
-		return "WorkerDetails [no=" + no + ", userCode=" + userCode + ", gx=" + gx + ", gy=" + gy + ", gz=" + gz
-				+ ", label=" + label + ", time=" + time + ", heartbeat=" + heartbeat + ", temp=" + temp + "]";
-	}
 	
 }
