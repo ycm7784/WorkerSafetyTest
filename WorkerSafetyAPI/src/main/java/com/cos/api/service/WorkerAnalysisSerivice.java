@@ -15,11 +15,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class WorkerAnalysisSerivice {
-	@Autowired
-	WorkerAnalysisRepository workAnalysisRepo;
+	
+	final WorkerAnalysisRepository workAnalysisRepo;
+	
+	final WorkerService workerService;
 	
 	@Autowired
-	WorkerService workerService;
+	public WorkerAnalysisSerivice(WorkerAnalysisRepository workAnalysisRepo,WorkerService workerService) {
+		this.workAnalysisRepo = workAnalysisRepo;
+		this.workerService = workerService;
+	}
 	
 	public void saveWorkerAnalysisData(String response, LocalDateTime time) throws JsonMappingException, JsonProcessingException {
 		// 응답 JSON 파싱

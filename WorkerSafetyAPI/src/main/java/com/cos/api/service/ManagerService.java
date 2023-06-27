@@ -10,12 +10,15 @@ import com.cos.api.repository.ManagerRepository;
 @Service
 public class ManagerService {
 	
-	@Autowired
-	ManagerRepository managerRepo;
+	final ManagerRepository managerRepo;
+	
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+	public ManagerService(ManagerRepository mangerRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.managerRepo = mangerRepo;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
 	public Manager joinManager (Manager manager) {
 		manager.setPassword(bCryptPasswordEncoder.encode(manager.getPassword()));
 		return managerRepo.save(manager);

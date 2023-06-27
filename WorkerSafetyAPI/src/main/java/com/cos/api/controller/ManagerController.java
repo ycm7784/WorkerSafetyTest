@@ -34,22 +34,28 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 @EnableScheduling
 @RestController
 public class ManagerController   {
-	@Autowired
-	ManagerService managerService;
+	
+	final ManagerService managerService;
+
+	final WorkerService workerService;
+	
+	final WorkerDetailsService workerdeDetailsService;	
+	
+	final WorkerAnalysisSerivice workerAnalysisSerivice;
 	
 	@Autowired
-	WorkerService workerService;
+	public ManagerController(ManagerService managerService,WorkerService workerService,WorkerDetailsService workerdeDetailsService,WorkerAnalysisSerivice workerAnalysisSerivice) {
+		this.managerService = managerService;
+		this.workerService = workerService;
+		this.workerdeDetailsService = workerdeDetailsService;
+		this.workerAnalysisSerivice = workerAnalysisSerivice;
 	
-	@Autowired
-	WorkerDetailsService workerdeDetailsService;	
-	
-	@Autowired 
-	WorkerAnalysisSerivice workerAnalysisSerivice;
+	}
 	
 	@PostMapping("/user/join")
-	public String join(@RequestBody Manager manager) {
+	public ResponseEntity<String> join(@RequestBody Manager manager) {
 		managerService.joinManager(manager);
-		return "회원가입완료";
+		return ResponseEntity.ok("회원가입완료");
 		
 	}
 	@GetMapping("/worker/list")
@@ -97,7 +103,7 @@ public class ManagerController   {
     	String response = restTemplate.postForObject(url, entity, String.class);
     	System.out.println(response);
     	//플라스크에서 온 분석한 데이터 데이터베이스에 저장 
-    	workerAnalysisSerivice.saveWorkerAnalysisData(response, updatedTime);
+//    	workerAnalysisSerivice.saveWorkerAnalysisData(response, updatedTime);
     	return ResponseEntity.ok(response);
 		}
 		return null;

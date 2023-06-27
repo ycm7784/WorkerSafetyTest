@@ -13,9 +13,13 @@ import com.cos.api.repository.WorkerRepository;
 @Service
 public class WorkerService {
 	
-	@Autowired
-	WorkerRepository workerRepo;
 	
+	final WorkerRepository workerRepo;
+	
+	public WorkerService(WorkerRepository workerRepo) {
+		this.workerRepo = workerRepo;
+		
+	}
 	
 	public List<Worker> workerList() {
 		List<Worker> worker  = workerRepo.findAll();
@@ -26,11 +30,11 @@ public class WorkerService {
 		workerRepo.save(worker);
 	}
 	@Transactional
-	public void workerdelete(int code) {
+	public void workerdelete(Integer code) {
 		workerRepo.deleteByuserCode(code);
 		
 	}
-	public  Optional<Worker> workerid(int i) {
+	public  Optional<Worker> workerid(Integer i) {
 		return workerRepo.findById(i);
 	}
 }

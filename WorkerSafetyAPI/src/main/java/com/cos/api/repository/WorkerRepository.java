@@ -6,6 +6,6 @@ import com.cos.api.domain.Worker;
 
 public interface WorkerRepository extends JpaRepository<Worker, Integer> {
 	
-	public void deleteByuserCode(int code);
+	public void deleteByuserCode(Integer code);
 	
 }
