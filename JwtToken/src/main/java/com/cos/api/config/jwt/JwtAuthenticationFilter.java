@@ -1,4 +1,4 @@
-package com.cos.jwt.config.jwt;
+package com.cos.api.config.jwt;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -17,8 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.cos.jwt.config.auth.PrincipalDetails;
-import com.cos.jwt.domain.Manager;
+import com.cos.api.config.auth.PrincipalDetails;
+import com.cos.api.domain.Manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //스프링 시큐리티에서 UsernamePasswordAuthenticationFilter 가 있음
 //login 요청해서 username,password 전송하면 (post)

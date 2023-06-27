@@ -1,4 +1,4 @@
-package com.cos.jwt.config;
+package com.cos.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +11,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.cos.jwt.config.jwt.JwtAuthenticationFilter;
-import com.cos.jwt.config.jwt.JwtAuthorizationFilter;
-import com.cos.jwt.repository.ManagerRepository;
+import com.cos.api.config.jwt.JwtAuthenticationFilter;
+import com.cos.api.config.jwt.JwtAuthorizationFilter;
+import com.cos.api.repository.ManagerRepository;
 
 @Configuration  // 빈(bean) 정의를 생성하고 관리하는 역할
 @EnableWebSecurity  //  시큐리티 활성화 -> 기본 스프링 필터체인에 등록

@@ -1,4 +1,4 @@
-package com.cos.jwt.config.jwt;
+package com.cos.api.config.jwt;
 
 import java.io.IOException;
 
@@ -17,9 +17,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.cos.jwt.config.auth.PrincipalDetails;
-import com.cos.jwt.domain.Manager;
-import com.cos.jwt.repository.ManagerRepository;
+import com.cos.api.config.auth.PrincipalDetails;
+import com.cos.api.domain.Manager;
+import com.cos.api.repository.ManagerRepository;
 
 //시큐리티가 filter가지고 있는데 그 필터중에 BasicAuthenticationfilter 라는 것이 있음.
 //권한이나 인증이 필요한 특정 주소를 요청했을 때 위 필터를 무조건 타게 되어있음.

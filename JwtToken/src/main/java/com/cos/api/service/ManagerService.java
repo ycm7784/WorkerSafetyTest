@@ -1,11 +1,11 @@
-package com.cos.jwt.service;
+package com.cos.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.cos.jwt.domain.Manager;
-import com.cos.jwt.repository.ManagerRepository;
+import com.cos.api.domain.Manager;
+import com.cos.api.repository.ManagerRepository;
 
 @Service
 public class ManagerService {

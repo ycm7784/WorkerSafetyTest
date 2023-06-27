@@ -1,4 +1,4 @@
-package com.cos.jwt.controller;
+package com.cos.api.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 
-import com.cos.jwt.domain.Manager;
-import com.cos.jwt.domain.Worker;
-import com.cos.jwt.domain.WorkerDetails;
-import com.cos.jwt.service.ManagerService;
-import com.cos.jwt.service.WorkerAnalysisSerivice;
-import com.cos.jwt.service.WorkerDetailsService;
-import com.cos.jwt.service.WorkerService;
+import com.cos.api.domain.Manager;
+import com.cos.api.domain.Worker;
+import com.cos.api.domain.WorkerDetails;
+import com.cos.api.service.ManagerService;
+import com.cos.api.service.WorkerAnalysisSerivice;
+import com.cos.api.service.WorkerDetailsService;
+import com.cos.api.service.WorkerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 

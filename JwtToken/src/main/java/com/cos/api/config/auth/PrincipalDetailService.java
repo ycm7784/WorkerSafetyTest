@@ -1,4 +1,4 @@
-package com.cos.jwt.config.auth;
+package com.cos.api.config.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cos.jwt.domain.Manager;
-import com.cos.jwt.repository.ManagerRepository;
+import com.cos.api.domain.Manager;
+import com.cos.api.repository.ManagerRepository;
 
 //http://localhost:8080/login -> 여기서 동작을 안한다
 //->직접 PrincipalDetailService 사용하는 필터 JwtAuthenticationFilter를 만들어 준다.

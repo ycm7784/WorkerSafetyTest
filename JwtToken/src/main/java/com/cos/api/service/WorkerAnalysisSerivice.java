@@ -1,13 +1,13 @@
-package com.cos.jwt.service;
+package com.cos.api.service;
 
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cos.jwt.domain.Worker;
-import com.cos.jwt.domain.WorkerAnalysis;
-import com.cos.jwt.repository.WorkerAnalysisRepository;
+import com.cos.api.domain.Worker;
+import com.cos.api.domain.WorkerAnalysis;
+import com.cos.api.repository.WorkerAnalysisRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;

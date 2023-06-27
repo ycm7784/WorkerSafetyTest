@@ -1,4 +1,4 @@
-package com.cos.jwt.domain;
+package com.cos.api.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

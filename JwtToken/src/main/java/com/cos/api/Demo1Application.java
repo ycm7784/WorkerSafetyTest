@@ -1,4 +1,4 @@
-package com.cos.jwt;
+package com.cos.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

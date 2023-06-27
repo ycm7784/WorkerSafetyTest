@@ -1,4 +1,4 @@
-package com.cos.jwt.service;
+package com.cos.api.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cos.jwt.domain.WorkerDetails;
-import com.cos.jwt.repository.WorkerDetailsRepository;
+import com.cos.api.domain.WorkerDetails;
+import com.cos.api.repository.WorkerDetailsRepository;
 
 @Service
 public class WorkerDetailsService {

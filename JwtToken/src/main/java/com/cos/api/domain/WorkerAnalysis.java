@@ -1,4 +1,4 @@
-package com.cos.jwt.domain;
+package com.cos.api.domain;
 
 import java.time.LocalDateTime;
 
